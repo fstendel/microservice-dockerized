@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.wildfly.swarm>2017.3.3</version.wildfly.swarm>
-        <failOnMissingWebXml>true</failOnMissingWebXml>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 
     <dependencyManagement>
@@ -64,32 +64,47 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.13</version>
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                        <configuration>
-                            <imageName>${artifactId}-dockerized</imageName>
-                            <baseImage>java</baseImage>
-                            <entryPoint>["java", "-jar", "/${project.build.finalName}-swarm.jar"]</entryPoint>
-                            <resources>
-                                <resource>
-                                    <targetPath>/</targetPath>
-                                    <directory>${project.build.directory}</directory>
-                                    <include>${project.build.finalName}-swarm.jar</include>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dockerize</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.4.13</version>
+                        <executions>
+                            <execution>
+                                <id>build-image</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <imageName>${project.artifactId}-dockerized</imageName>
+                                    <baseImage>java</baseImage>
+                                    <entryPoint>["java", "-jar", "/${project.build.finalName}-swarm.jar"]</entryPoint>
+                                    <resources>
+                                        <resource>
+                                            <targetPath>/</targetPath>
+                                            <directory>${project.build.directory}</directory>
+                                            <include>${project.build.finalName}-swarm.jar</include>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 </project>
