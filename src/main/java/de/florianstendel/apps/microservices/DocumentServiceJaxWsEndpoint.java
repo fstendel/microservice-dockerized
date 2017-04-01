@@ -9,11 +9,11 @@ import javax.jws.WebService;
  * Created by Florian on 01.04.2017.
  */
 @WebService
-public class DocumentService {
+public class DocumentServiceJaxWsEndpoint {
 
     @WebMethod
     public void createDocument(FileType fileType, String content){
 
-
+        System.out.println("Create document called.");
     }
 }
