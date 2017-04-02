@@ -26,7 +26,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
 
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+            <version>8.0.5</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -101,6 +108,10 @@
                                     </resources>
                                 </configuration>
                             </execution>
+                            <!--execution>
+                                <id>release-image</id>
+                                <phase>deploy</phase>
+                            </execution-->
                         </executions>
                     </plugin>
                 </plugins>
