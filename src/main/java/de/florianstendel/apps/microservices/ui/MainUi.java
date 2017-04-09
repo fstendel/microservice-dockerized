@@ -24,19 +24,10 @@ public class MainUi extends UI {
         pageContent.setSizeFull();
         setContent(pageContent);
 
-        Button button = new Button("Drück mich");
-
-        button.addClickListener(new Button.ClickListener() {
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                Notification.show("Document creation", "Client application requested new" +
-                        "document of type: invoice.", Notification.Type.TRAY_NOTIFICATION);
-
-            }
-        });
-
         leftPanel.addComponent(new Label("Übersicht"));
         leftPanel.addComponent(new Label("Templates"));
         leftPanel.addComponent(new Label("Dokumentarchiv"));
-        rightPanel.addComponent(button);
+
+        /*rightPanel.addComponent(button);*/
     }
 }
