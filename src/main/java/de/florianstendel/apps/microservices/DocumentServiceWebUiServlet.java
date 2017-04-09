@@ -2,7 +2,7 @@ package de.florianstendel.apps.microservices;
 
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinServlet;
-import de.florianstendel.apps.microservices.ui.SampleUi;
+import de.florianstendel.apps.microservices.ui.MainUi;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -11,6 +11,6 @@ import javax.servlet.annotation.WebServlet;
  */
 
 @WebServlet(value = "/*", asyncSupported = true)
-@VaadinServletConfiguration(productionMode = false,ui = SampleUi.class)
+@VaadinServletConfiguration(productionMode = false,ui = MainUi.class)
 public class DocumentServiceWebUiServlet extends VaadinServlet{
 }

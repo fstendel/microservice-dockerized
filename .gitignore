@@ -1,0 +1,4 @@
+# Default ignores
+/target/*
+/.idea/*
+*iml
